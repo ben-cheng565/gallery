@@ -11,5 +11,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "postinstall": "npm run build"
+  },
+  "dependencies": {
+    "node": "^14.13.0"
   }
 }
