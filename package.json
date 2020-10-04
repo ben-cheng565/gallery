@@ -7,7 +7,6 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "node": "^14.13.0",
-    "react-scripts": "3.4.1"
+    "node": "^14.13.0"
   }
 }
