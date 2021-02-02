@@ -1,16 +1,20 @@
 import express from "express";
 import bodyParser from "body-parser";
 import session from "express-session";
-import apiRoutes from "./api-routes";
 import path from "path";
 import mongoose from "mongoose";
+import cors from "cors";
 
+import apiRoutes from "./api-routes/index.js";
+import uploadRoutes from "./api-routes/upload.js";
 // Setup Express
 const app = express();
 const port = process.env.PORT || 10000;
 
 // Setup body-parser
 app.use(bodyParser.json({ extended: false }));
+
+app.use(cors());
 
 // Setup express-session
 app.use(
@@ -41,9 +45,12 @@ mongoose
 // Setup our routes. These will be served as first priority.
 // Any request to /api will go through these routes.
 app.use("/api", apiRoutes);
+app.use("/upload", uploadRoutes);
 
 // Make the public folder available statically
 const oneHour = 60 * 60 * 1000;
+const __dirname = path.resolve();
+
 app.use(express.static(path.join(__dirname, "./public"), { maxAge: oneHour }));
 
 // If we're in production...

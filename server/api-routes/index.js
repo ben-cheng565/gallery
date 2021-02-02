@@ -1,25 +1,30 @@
-import express from 'express';
-import { GalleryItem } from '../db/schema';
-import createDummyData from '../db/dummy-data';
-import mongooseCrudify from 'mongoose-crudify';
+import express from "express";
+import { GalleryItem } from "../db/schema.js";
+import createDummyData from "../db/dummy-data.js";
+import mongooseCrudify from "mongoose-crudify";
+
+import { parseAsync } from "@babel/core";
 
 const router = express.Router();
 
 /**
  * Use default mongoose-crudify to add List, Create, Read, Update, and Delete operations for gallery items
  */
-router.use('/galleryItems', mongooseCrudify({
-    Model: GalleryItem
-}));
+router.use(
+  "/galleryItems",
+  mongooseCrudify({
+    Model: GalleryItem,
+  })
+);
 
 /**
  * When making a GET request to "/api/init", clear the database and re-add the starting data.
- * 
+ *
  * For testing purposes!
  */
-router.get('/init', async (req, res) => {
-    await createDummyData();
-    res.redirect('/api/galleryItems');
+router.get("/init", async (req, res) => {
+  await createDummyData();
+  res.redirect("/api/galleryItems");
 });
 
 export default router;
