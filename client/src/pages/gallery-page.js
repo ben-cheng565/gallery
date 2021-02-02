@@ -13,6 +13,8 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import { makeStyles } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 import ImageGallery from "../components/image-gallery";
 
@@ -40,39 +42,42 @@ class GalleryPage extends React.Component {
   }
 
   render() {
-    const { galleryItems, showOnlyFavourites } = this.props;
+    const { classes, galleryItems, showOnlyFavourites } = this.props;
+
     return (
-      <Switch>
-        <Route exact path="/">
-          <ImageGallery
-            galleryItems={
-              showOnlyFavourites
-                ? galleryItems.filter(
-                    (galleryItem) => galleryItem.favourite === true
-                  )
-                : galleryItems
-            }
-            handleChangeImage={(todo) => this.handleImageChange(todo)}
-            handleThumbnailClick={(todo) => this.handleClickFavourite(todo)}
-          />
-        </Route>
-        <Route path="/:id">
-          <ImageGalleryWithParams
-            galleryItems={
-              showOnlyFavourites
-                ? galleryItems.filter(
-                    (galleryItem) => galleryItem.favourite === true
-                  )
-                : galleryItems
-            }
-            handleChangeImage={(todo) => this.handleImageChange(todo)}
-            handleThumbnailClick={(todo) => this.handleClickFavourite(todo)}
-          />
-        </Route>
-        <Route path="*">
-          <Redirect to={`/${galleryItems[0] ? galleryItems[0]._id : ""}`} />
-        </Route>
-      </Switch>
+      <div className={classes.container}>
+        <Switch>
+          <Route exact path="/">
+            <ImageGallery
+              galleryItems={
+                showOnlyFavourites
+                  ? galleryItems.filter(
+                      (galleryItem) => galleryItem.favourite === true
+                    )
+                  : galleryItems
+              }
+              handleChangeImage={(todo) => this.handleImageChange(todo)}
+              handleThumbnailClick={(todo) => this.handleClickFavourite(todo)}
+            />
+          </Route>
+          <Route path="/:id">
+            <ImageGalleryWithParams
+              galleryItems={
+                showOnlyFavourites
+                  ? galleryItems.filter(
+                      (galleryItem) => galleryItem.favourite === true
+                    )
+                  : galleryItems
+              }
+              handleChangeImage={(todo) => this.handleImageChange(todo)}
+              handleThumbnailClick={(todo) => this.handleClickFavourite(todo)}
+            />
+          </Route>
+          <Route path="*">
+            <Redirect to={`/${galleryItems[0] ? galleryItems[0]._id : ""}`} />
+          </Route>
+        </Switch>
+      </div>
     );
   }
 }
@@ -101,6 +106,15 @@ function ImageGalleryWithParams({
   }
 }
 
+// const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
+  container: {
+    display: "grid",
+    gridTemplateRows: "1fr",
+    gridTemplateColumns: "1fr",
+  },
+});
+
 /**
  * Give the ToDoManager access to the todos from the Redux store
  */
@@ -122,4 +136,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(GalleryPage));
+)(withStyles(styles)(withRouter(GalleryPage)));
