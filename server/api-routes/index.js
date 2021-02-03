@@ -3,8 +3,6 @@ import { GalleryItem } from "../db/schema.js";
 import createDummyData from "../db/dummy-data.js";
 import mongooseCrudify from "mongoose-crudify";
 
-import { parseAsync } from "@babel/core";
-
 const router = express.Router();
 
 /**

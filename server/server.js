@@ -14,8 +14,6 @@ const port = process.env.PORT || 10000;
 // Setup body-parser
 app.use(bodyParser.json({ extended: false }));
 
-app.use(cors());
-
 // Setup express-session
 app.use(
   session({
@@ -24,6 +22,8 @@ app.use(
     secret: "CS732SE750",
   })
 );
+
+app.use(cors());
 
 // Initialize database. When we quit the server, the db connection will close automatically.
 // mongoose.connect('mongodb://localhost:27017/galleryApp', { useNewUrlParser: true }).then(
