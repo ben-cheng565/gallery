@@ -43,7 +43,11 @@ export default function ImageGallery({
             <ArrowLeftIcon className={classes.navIcon} />
           </IconButton>
         </div>
-        <img src={selectedItem.imageUrl} className={classes.mainImage} />
+        <img
+          src={selectedItem.imageUrl}
+          className={classes.mainImage}
+          alt={selectedItem.title}
+        />
         <div className={classes.navButtonPanel}>
           <IconButton
             aria-label="next"

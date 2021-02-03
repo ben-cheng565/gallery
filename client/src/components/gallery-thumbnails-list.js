@@ -7,8 +7,6 @@ import IconButton from "@material-ui/core/IconButton";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
 import moment from "moment";
-import { useParams } from "react-router-dom";
-import ImageGallery from "./image-gallery";
 
 export default function GalleryThumbnailsList({
   galleryItems,

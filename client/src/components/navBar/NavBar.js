@@ -6,12 +6,11 @@ import {
   FormControlLabel,
   Checkbox,
   Button,
-  makeStyles,
 } from "@material-ui/core";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 import ImageIcon from "@material-ui/icons/Image";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import StarIcon from "@material-ui/icons/Star";
@@ -20,10 +19,6 @@ import state from "../../redux/reducers";
 import { withStyles } from "@material-ui/core/styles";
 
 class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { classes } = this.props;
 

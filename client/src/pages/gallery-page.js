@@ -13,7 +13,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { makeStyles } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import ImageGallery from "../components/image-gallery";

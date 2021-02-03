@@ -4,7 +4,6 @@ import {
   updateGalleryItemThunk,
   deleteGalleryItemThunk,
 } from "../actions";
-import moment from "moment";
 
 /**
  * Applies the given action to the given todo-list state, if applicable.

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import NavBar from "./components/navBar/NavBar";
 import GalleryPage from "./pages/gallery-page";
@@ -10,10 +10,6 @@ import GalleryPage from "./pages/gallery-page";
  * within the ToDoManager.
  */
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <BrowserRouter>
