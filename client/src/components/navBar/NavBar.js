@@ -32,8 +32,13 @@ class NavBar extends React.Component {
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <ImageIcon fontSize="large" className={classes.icon} />
-            <Typography variant="h6" className={classes.title}>
-              Yet Another Image Gallery
+            <Typography
+              variant="h6"
+              className={classes.title}
+              component={Link}
+              to="/"
+            >
+              Awesome Image Gallery
             </Typography>
 
             <FormControlLabel
@@ -77,7 +82,14 @@ const styles = (theme) => ({
   },
   title: {
     flexGrow: 1,
+    textDecoration: "none",
+    color: "white",
+    "&:hover": {
+      textDecoration: "none",
+      color: "white",
+    },
   },
+
   container: {
     display: "grid",
     gridTemplateRows: "1fr",
