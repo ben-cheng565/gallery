@@ -44,7 +44,6 @@ const generateThumbnail = async () => {
       if (err) throw err;
 
       // success case, the file was saved
-      console.log("Thumbnail generated successfully!");
     });
   } catch (err) {
     console.error(err);
