@@ -3,7 +3,6 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import NavBar from "./components/navBar/NavBar";
-import FileUpload from "./components/fileUpload/fileUpload";
 import GalleryPage from "./pages/gallery-page";
 
 /**
@@ -20,10 +19,7 @@ class App extends React.Component {
       <BrowserRouter>
         <div>
           <NavBar />
-          <Switch>
-            <Route path="/" exact component={GalleryPage} />
-            <Route path="/add" exact component={FileUpload} />
-          </Switch>
+          <GalleryPage />
         </div>
       </BrowserRouter>
     );

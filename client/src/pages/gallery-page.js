@@ -17,6 +17,7 @@ import { makeStyles } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 import ImageGallery from "../components/image-gallery";
+import FileUpload from "../components/fileUpload/fileUpload";
 
 /**
  * A "page-level" component that's hooked into the Redux store to get the gallery items. When this component
@@ -47,6 +48,7 @@ class GalleryPage extends React.Component {
     return (
       <div className={classes.container}>
         <Switch>
+          <Route exact path="/add" component={FileUpload}></Route>
           <Route exact path="/">
             <ImageGallery
               galleryItems={
@@ -60,7 +62,7 @@ class GalleryPage extends React.Component {
               handleThumbnailClick={(todo) => this.handleClickFavourite(todo)}
             />
           </Route>
-          <Route path="/:id">
+          <Route exact path="/:id">
             <ImageGalleryWithParams
               galleryItems={
                 showOnlyFavourites
@@ -73,6 +75,7 @@ class GalleryPage extends React.Component {
               handleThumbnailClick={(todo) => this.handleClickFavourite(todo)}
             />
           </Route>
+
           <Route path="*">
             <Redirect to={`/${galleryItems[0] ? galleryItems[0]._id : ""}`} />
           </Route>
