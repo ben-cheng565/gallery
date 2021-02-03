@@ -92,7 +92,7 @@ class FileUpload extends Component {
     }
 
     axios
-      .post("http://localhost:10000/upload", data, {
+      .post("https://image-gallery-backend.herokuapp.com/upload", data, {
         onUploadProgress: (ProgressEvent) => {
           this.setState({
             loaded: (ProgressEvent.loaded / ProgressEvent.total) * 100,

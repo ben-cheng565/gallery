@@ -27,6 +27,7 @@ export default function ImageGallery({
 
   let selectedItem = galleryItems.find((item) => item._id === selectedId);
   selectedItem = selectedItem || galleryItems[0];
+  const imagePath = `https://image-gallery-backend.herokuapp.com${selectedItem.imageUrl}`;
 
   handleChangeImage = handleChangeImage || (() => null); // Prevent trying to call a nonexistant function
 
@@ -44,7 +45,7 @@ export default function ImageGallery({
           </IconButton>
         </div>
         <img
-          src={selectedItem.imageUrl}
+          src={imagePath}
           className={classes.mainImage}
           alt={selectedItem.title}
         />
@@ -116,6 +117,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: -theme.spacing(4),
     marginRight: -theme.spacing(4),
     marginBottom: theme.spacing(4),
+    paddingLeft: theme.spacing(5),
+    paddingRight: theme.spacing(5),
     filter: "drop-shadow(0px 3px 3px rgba(128, 128, 128, 0.8))",
   },
   navIcon: {

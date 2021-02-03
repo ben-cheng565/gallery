@@ -26,7 +26,7 @@ export default function GalleryThumbnailsList({
             >
               <img
                 className={classes.thumbnail}
-                src={item.thumbnailUrl}
+                src={`https://image-gallery-backend.herokuapp.com${item.thumbnailUrl}`}
                 alt={item.title}
                 data-selected={item._id === selectedId}
               />
