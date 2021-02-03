@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { createGalleryItemThunk } from "../../redux/actions";
+import { connect } from "react-redux";
 
 import UploadProgress from "./uploadProgress";
 
@@ -19,10 +21,10 @@ class FileUpload extends Component {
   //check the number of files
   maxSelectedFile = (event) => {
     let files = event.target.files;
-    if (files.length > 3) {
+    if (files.length > 1) {
       event.target.value = null;
       //alert("Maximum 3 files can be uploaded at a time");
-      toast.warn("Maximum 3 files can be uploaded at a time");
+      toast.warn("Maximum 1 files can be uploaded at a time");
       return false;
     }
     return true;
@@ -98,6 +100,15 @@ class FileUpload extends Component {
         },
       })
       .then((res) => {
+        // console.log(res.data.filePath);
+        const newItem = {
+          title: "upload",
+          imageUrl: `/images/${res.data.filePath}`,
+          thumbnailUrl: `/images/thumbnails/${res.data.filePath}`,
+          created: new Date(),
+          favourite: false,
+        };
+        this.props.dispatchCreateGalleryItems(newItem);
         toast.success("Upload succeffully!");
       })
       .catch((err) => {
@@ -115,11 +126,12 @@ class FileUpload extends Component {
           <div className="row">
             <div className="col-md">
               <div className="form-group files">
-                <label>Upload Your Files </label>
+                <label>Upload Your Image </label>
                 <input
                   type="file"
                   className="form-control"
-                  multiple //multiple files
+                  accept="image/*"
+                  // multiple //multiple files
                   onChange={this.onChangeHandler}
                 ></input>
               </div>
@@ -143,4 +155,22 @@ class FileUpload extends Component {
   }
 }
 
-export default FileUpload;
+// export default FileUpload;
+
+/**
+ * Give the ToDoManager access to the todos from the Redux store
+ */
+const mapStateToProps = (state) => {
+  return {
+    galleryItems: state.galleryItems,
+  };
+};
+
+/**
+ * Give the ToDoManager access to these Redux actions which dispatch API calls
+ */
+const mapDispatchToProps = {
+  dispatchCreateGalleryItems: createGalleryItemThunk.thunk,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FileUpload);
